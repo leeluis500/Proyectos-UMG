@@ -8,11 +8,18 @@ package Hoteleria.vista;
 import Hoteleria.datos.HuespedesDAO;
 import Hoteleria.dominio.Huespedes;
 import java.io.File;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.List;
+import seguridad.vista.Aplicacion_Perfil;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import seguridad.datos.BitacoraDao;
+import seguridad.dominio.Bitacora;
+import Hoteleria.datos.GuardarBitacoraDAO;
 import seguridad.vista.GenerarPermisos;
 import seguridad.vista.Login;
 /**
@@ -22,6 +29,7 @@ import seguridad.vista.Login;
 public class Mantenimiento_Huespedes extends javax.swing.JInternalFrame {
     DefaultTableModel modelo1;
     DefaultTableCellRenderer centro= new DefaultTableCellRenderer();
+    String codigoAplicacion="2004";
     /**
      * Creates new form Mantenimiento_Huespedes
      */
@@ -124,6 +132,35 @@ public class Mantenimiento_Huespedes extends javax.swing.JInternalFrame {
                modelo1.addRow(datos);
                tabla.setModel(modelo1);
         }
+    }
+    
+    private void GuardarEnBitacora(String accion, String codigoModulo, String idUsuario){
+        BitacoraDao BitacoraDAO = new BitacoraDao();
+        Bitacora AInsertar = new Bitacora();
+        boolean estado=false;
+        switch(accion){
+            case "Insertar":
+                AInsertar.setId_Usuario(idUsuario);
+                AInsertar.setAccion("Inserción");
+                AInsertar.setCodigoAplicacion(codigoModulo);estado=true;
+                break;
+            case "Modificacion":
+                AInsertar.setId_Usuario(idUsuario);
+                AInsertar.setAccion("Modificación");
+                AInsertar.setCodigoAplicacion(codigoModulo);estado=true;
+                break;
+            case "Eliminacion":
+                AInsertar.setId_Usuario(idUsuario);
+                AInsertar.setAccion("Eliminar");
+                AInsertar.setCodigoAplicacion(codigoModulo);estado=true;
+        }
+        if (estado==true) {
+        try {
+            BitacoraDAO.insert(AInsertar);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Aplicacion_Perfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }         
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -414,9 +451,12 @@ public class Mantenimiento_Huespedes extends javax.swing.JInternalFrame {
             huespedesdao.insert(guardarmetodo);
             actualizartabla();
             JOptionPane.showMessageDialog(null, "Huesped guardado correctamente");
+            GuardarBitacoraDAO guardarBitacora = new GuardarBitacoraDAO();
+                    guardarBitacora.GuardarEnBitacora("Insertar", (codigoAplicacion), Login.usuarioHoteleria);
         }else{
             JOptionPane.showMessageDialog(null, "Existen campos vacios, por favor revise y llene los campos");
         }
+            
         }else{
             JOptionPane.showMessageDialog(null, "El No. de identificacion del huesped, unicamente pueden ser números");
         }
@@ -442,9 +482,12 @@ public class Mantenimiento_Huespedes extends javax.swing.JInternalFrame {
             huespedesdao.update(modificarmetodo);
             actualizartabla();
             JOptionPane.showMessageDialog(null, "Huesped actualizado correctamente");
+            GuardarBitacoraDAO guardarBitacora = new GuardarBitacoraDAO();
+                    guardarBitacora.GuardarEnBitacora("Modificacion", (codigoAplicacion), Login.usuarioHoteleria);
         }else{
             JOptionPane.showMessageDialog(null, "Existen campos vacios, por favor revise y llene los campos");
         }
+            
         }else{
             JOptionPane.showMessageDialog(null, "El No. de indentificacion del huesped, unicamente pueden ser números");
         }
@@ -488,10 +531,13 @@ public class Mantenimiento_Huespedes extends javax.swing.JInternalFrame {
             modulosDAO.delete(moduloEliminar);
             actualizartabla();
             JOptionPane.showMessageDialog(null, "Huesped eliminado correctamente");
+            GuardarBitacoraDAO guardarBitacora = new GuardarBitacoraDAO();
+                    guardarBitacora.GuardarEnBitacora("Eliminacion", (codigoAplicacion), Login.usuarioHoteleria);
         }else{
             JOptionPane.showMessageDialog(null, "El No. de indentificacion esta vacio y/o el codigo debe de ser solo números");
                 //Si el campo esta vacio o no inserta números muestra un mensaje de error
         }
+        
             limpiar();
     }//GEN-LAST:event_BtnElimActionPerformed
 
