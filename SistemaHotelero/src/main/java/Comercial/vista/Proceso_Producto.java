@@ -50,7 +50,7 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
     /**
      * Creates new form Proceso_Producto
      */
-   public void llenadoDeTablas() {
+    public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID Proveedor");
         modelo.addColumn("Producto");
@@ -73,14 +73,14 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
             dato[4] = procesoproducto.get(i).getBodegasNuevaExistencia();
             dato[5] = procesoproducto.get(i).getNuevaExistencia();
             dato[6] = procesoproducto.get(i).getBodegasNuevaExistencia();
-                    
+
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
 
     public void limpiar() {
-        txtIDNombreProducto.setText("");
+        //   txt_combox.setText("");
         txtnombrebodega.setText("");
         txtExistenciasProducto.setText("");
 //        txt_fechaActualizacion.setText("");
@@ -90,7 +90,7 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
     }
 
     public void buscar() {
-        Buscar.setNombre_producto(txtIDNombreProducto.getText());
+        //  Buscar.setNombre_producto(txt_combox.getText());
         Buscar = procesoproducto.query(Buscar);
         txtnombrebodega.setText(Buscar.getNombre_bodega());
         txtExistenciasProducto.setText(Buscar.getExistencias_producto());
@@ -106,6 +106,21 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         // txtfechaActualizacion.setCalendar(formato(sistFecha));
     }
 
+    public void llenadoDeCombos2() {
+        // List<Cliente> Bus = Cliente.select();
+//        txt_combox.addItem("Productos Disponibles");
+//        for (int i = 0; i < Bus.size(); i++) {
+//            txt_combox.addItem(Bus.get(i).getCliente());
+//            String valor = txt_combox.getSelectedItem().toString();
+//    }
+    }
+//              Buscar1.setCliente(cliente.getText());
+//Buscar1=Clientes.query2(Buscar1);
+//
+//
+////precio.setText(Buscar.);
+//E.setText(Buscar1.getCliente());
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,14 +135,14 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtIDNombreProducto = new javax.swing.JTextField();
         txtnombrebodega = new javax.swing.JTextField();
         txtExistenciasProducto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        txt_combox = new javax.swing.JComboBox<>();
         txtfechaActualizacion = new com.toedter.calendar.JDateChooser();
+        txtProdcuto = new javax.swing.JTextField();
+        txt_combox = new javax.swing.JComboBox<>();
         btnAyuda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -142,7 +157,10 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         txtProductoNuevo = new javax.swing.JTextField();
         txtNuevaExistencia = new javax.swing.JTextField();
-        cbox_BodegasNuevaExistencia = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        txtExistenciasTotales = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        txtBodegasNuevaExistencia = new javax.swing.JTextField();
 
         setIconifiable(true);
         setMaximizable(true);
@@ -208,13 +226,17 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnombrebodega, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_combox, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtIDNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar)))
-                        .addGap(23, 23, 23))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtnombrebodega, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txt_combox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(btnBuscar)))
+                                .addGap(23, 23, 23))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtProdcuto, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,12 +244,12 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtIDNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(24, 24, 24)
+                    .addComponent(btnBuscar)
+                    .addComponent(txt_combox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_combox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtProdcuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnombrebodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,6 +358,16 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Bodega");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Existencias totales");
+
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -344,31 +376,41 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtProductoNuevo)
-                    .addComponent(txtNuevaExistencia)
-                    .addComponent(cbox_BodegasNuevaExistencia, 0, 115, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtProductoNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(txtNuevaExistencia, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtExistenciasTotales)
+                    .addComponent(txtBodegasNuevaExistencia))
+                .addGap(35, 35, 35)
+                .addComponent(btnActualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
-                    .addComponent(txtProductoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtProductoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizar)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtNuevaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtExistenciasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(cbox_BodegasNuevaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(txtBodegasNuevaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,7 +445,7 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -422,7 +464,7 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, "Modificación Exitosa.");
 
         BitacoraDao BitacoraDAO = new BitacoraDao();
-        
+
         Bitacora Insertar = new Bitacora();
         Insertar.setId_Usuario("MantenimientoProductos");
         Insertar.setAccion("Modificar");
@@ -477,16 +519,30 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        buscar();
+        String valor = txt_combox.getSelectedItem().toString();
+        int valorint = Integer.parseInt(valor);
+        ProductoDAO perfilDAO = new ProductoDAO();
+        Producto perfilconsultar = new Producto();
+        perfilconsultar.setPK_id_producto(valorint);
+        perfilconsultar = perfilDAO.query(perfilconsultar);
+        if (perfilconsultar.getPK_id_producto() != 0) {
+            estadovalidacion = 1;
+            txtProdcuto.setText(perfilconsultar.getNombre_producto());
+            txtnombrebodega.setText(perfilconsultar.getBodega());
+            //      txtfechaActualizacion.setCalendar(perfilconsultar.getFechaIngreso());
+        } else {
+
+            estadovalidacion = 0;
+        }
+
         BitacoraDao BitacoraDAO = new BitacoraDao();
 
         Bitacora Insertar = new Bitacora();
         Insertar.setId_Usuario(Login.usuarioComercial);
         Insertar.setAccion("Buscar");
 
-        Insertar.setCodigoAplicacion("3006");
+        Insertar.setCodigoAplicacion("3007");
         Insertar.setModulo("3000");
-
         try {
             BitacoraDAO.insert(Insertar);
         } catch (UnknownHostException ex) {
@@ -498,7 +554,7 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         ProcesoProductoDAO productoDAO = new ProcesoProductoDAO();
         ProcesoProducto productoAEliminar = new ProcesoProducto();
-        productoAEliminar.setPK_id_procesoproducto(Integer.parseInt(txtIDNombreProducto.getText()));
+        productoAEliminar.setPK_id_procesoproducto(Integer.parseInt(txt_combox.getItemAt(WIDTH)));
         productoDAO.delete(productoAEliminar);
         JOptionPane.showMessageDialog(null, "Registro Eliminado.");
 
@@ -527,14 +583,14 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         ProcesoProductoDAO productoDAO = new ProcesoProductoDAO();
         ProcesoProducto productoAInsertar = new ProcesoProducto();
 
-        productoAInsertar.setPK_id_procesoproducto((int) Integer.parseInt(txtIDNombreProducto.getText()));
+        productoAInsertar.setPK_id_procesoproducto((int) Integer.parseInt(txt_combox.getActionCommand()));
         productoAInsertar.setNombre_producto(txt_combox.getSelectedItem().toString());
         productoAInsertar.setNombre_bodega(txtnombrebodega.getText());
         productoAInsertar.setExistencias_producto(txtExistenciasProducto.getText());
         productoAInsertar.setFechaActualizacion(txtfechaActualizacion.getDateFormatString());
         productoAInsertar.setProductoNuevo(txtProductoNuevo.getText());
         productoAInsertar.setNuevaExistencia(txtNuevaExistencia.getText());
-        productoAInsertar.setBodegasNuevaExistencia(cbox_BodegasNuevaExistencia.getSelectedItem().toString());
+        productoAInsertar.setBodegasNuevaExistencia(txtBodegasNuevaExistencia.getText());
         productoDAO.insert(productoAInsertar);
 
         BitacoraDao BitacoraDAO = new BitacoraDao();
@@ -553,16 +609,26 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
         limpiar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        int numero1, numero2, total;
+        numero1 = Integer.parseInt(txtExistenciasProducto.getText());
+        numero2 = Integer.parseInt(txtNuevaExistencia.getText());
+
+        total = numero1 + numero2;
+        txtExistenciasTotales.setText(String.valueOf(total));
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaProducto;
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnReporte;
-    private javax.swing.JComboBox<String> cbox_BodegasNuevaExistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -572,16 +638,19 @@ public class Proceso_Producto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtExistenciasProducto;
-    private javax.swing.JTextField txtIDNombreProducto;
-    private javax.swing.JTextField txtNuevaExistencia;
-    private javax.swing.JTextField txtProductoNuevo;
+    private javax.swing.JTextField txtBodegasNuevaExistencia;
+    public static javax.swing.JTextField txtExistenciasProducto;
+    private javax.swing.JTextField txtExistenciasTotales;
+    public static javax.swing.JTextField txtNuevaExistencia;
+    private javax.swing.JTextField txtProdcuto;
+    public static javax.swing.JTextField txtProductoNuevo;
     private javax.swing.JComboBox<String> txt_combox;
     private com.toedter.calendar.JDateChooser txtfechaActualizacion;
-    private javax.swing.JTextField txtnombrebodega;
+    public static javax.swing.JTextField txtnombrebodega;
     // End of variables declaration//GEN-END:variables
 }
